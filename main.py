@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 
-from scrape import scrape
+from film_data import FilmData
 
 
 def main() -> None:
@@ -14,7 +14,7 @@ def main() -> None:
     page_soup = BeautifulSoup(page_html, "html.parser")
 
     list_container = page_soup.find("tbody", {"class":"lister-list"})
-    list_items = list_container.find_all("tr", limit=10)
+    list_items = list_container.find_all("tr", limit=50)
     
     film_list = []
 
@@ -22,28 +22,44 @@ def main() -> None:
         suffix = list_item.td.a["href"]
         link = "https://www.imdb.com" + suffix
 
-        film_list.append(scrape(link, index))
+        film_title = list_item.find("td", {"class":"titleColumn"}).a.text
+        film_year = list_item.find("td", {"class":"titleColumn"}).span.text.replace("(", "").replace(")", "")
+        if (list_item.find("td", {"class":"ratingColumn"}).strong):
+                film_rating = float(list_item.find("td", {"class":"ratingColumn"}).strong.text)
+        else:
+                film_rating = 0
+        film_popularity = index
+        film_link = link
 
-    f = open("film_data.txt", "w")
+        new_film = FilmData(film_title, film_year, film_rating, film_popularity, film_link)
+
+        film_list.append(new_film)
+
+    f = open("film_data.csv", "w")
+    f.write("popularity,title,year,rating,link \n")
     
-    f.write("---------- SORTED BY POPULARITY ---------- \n \n")
-    for film in film_list:
-        f.write(film.title + "directed by " + film.director + "\n")
-        f.write(film.overview + "\n")
-        f.write("Average Rating: " + str(film.rating) + "\n")
-        f.write("Popularity: " + str(film.popularity) + "\n")
-        f.write("\n")
+    print("(1) Sort by popularity")
+    print("(2) Sort by title")
+    print("(3) Sort by year")
+    print("(4) Sort by rating")
+    choice = input("How would you like to sort the data: ")
 
-    film_list.sort(key=lambda x: x.rating, reverse=True)
-    f.write("---------- SORTED BY AVERAGE RATING ---------- \n \n")
-    for film in film_list:
-        f.write(film.title + "directed by " + film.director + "\n")
-        f.write(film.overview + "\n")
-        f.write("Average Rating: " + str(film.rating) + "\n")
-        f.write("Popularity: " + str(film.popularity) + "\n")
-        f.write("\n")
+    if choice == "1":
+        film_list.sort(key=lambda x: x.popularity, reverse=False)
+    elif choice == "2":
+        film_list.sort(key=lambda x: x.title, reverse=False)
+    elif choice == "3":
+        film_list.sort(key=lambda x: x.year, reverse=True)
+    elif choice == "4":
+        film_list.sort(key=lambda x: x.rating, reverse=True)
+    else:
+        print("Invalid input, please try again")
 
+    for film in film_list:
+        f.write(str(film.popularity) + "," + film.title + "," + film.year + "," + str(film.rating) + "," + film.link + "\n")
+    
     f.close()
+    
 
 if __name__ == "__main__":
     main()

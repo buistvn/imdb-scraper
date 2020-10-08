@@ -2,13 +2,13 @@ class FilmData:
     def __init__(
         self,
         title: str = " ",
-        director: str = " ",
-        overview: str = " ",
+        year: str = " ",
         rating: float = 0,
         popularity: int = 0,
+        link: str = " ",
     ):
         self.title = title
-        self.director = director
-        self.overview = overview
+        self.year = year
         self.rating = rating
         self.popularity = popularity
+        self.link = link

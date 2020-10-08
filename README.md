@@ -5,4 +5,4 @@ In the project directory, you can run:
 
 ### `python main.py`
 
-Runs the program and writes the data to film_data.txt.
+Runs the program and writes the data to film_data.csv.

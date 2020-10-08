@@ -1,5 +1,5 @@
 # Output files
-film_data.txt
+film_data.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
