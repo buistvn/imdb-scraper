@@ -1,10 +1,22 @@
+import mysql.connector
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 
 from film_data import FilmData
 
+mydb = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    passwd="123password",
+    database="filmdb"
+)
+
+mycursor = mydb.cursor()
 
 def main() -> None:
+    mycursor.execute("DROP TABLE IF EXISTS films")
+    mycursor.execute("CREATE TABLE films (popularity INTEGER(10), title VARCHAR(255), year INTEGER(10), rating FLOAT(10), link VARCHAR(255))")
+
     page_url = "https://www.imdb.com/chart/moviemeter/?ref_=nv_mv_mpm"
 
     uClient = urlopen(page_url)
@@ -31,8 +43,9 @@ def main() -> None:
         film_popularity = index
         film_link = link
 
-        new_film = FilmData(film_title, film_year, film_rating, film_popularity, film_link)
+        mycursor.execute("INSERT INTO films (popularity, title, year, rating, link) VALUES (%s, %s, %s, %s, %s)", (film_popularity, film_title, film_year, film_rating, film_link))
 
+        new_film = FilmData(film_title, film_year, film_rating, film_popularity, film_link)
         film_list.append(new_film)
 
     f = open("film_data.csv", "w")
@@ -45,21 +58,26 @@ def main() -> None:
     choice = input("How would you like to sort the data: ")
 
     if choice == "1":
+        mycursor.execute("ALTER TABLE films ORDER BY popularity")
         film_list.sort(key=lambda x: x.popularity, reverse=False)
     elif choice == "2":
+        mycursor.execute("ALTER TABLE films ORDER BY title")
         film_list.sort(key=lambda x: x.title, reverse=False)
     elif choice == "3":
+        mycursor.execute("ALTER TABLE films ORDER BY year DESC")
         film_list.sort(key=lambda x: x.year, reverse=True)
     elif choice == "4":
+        mycursor.execute("ALTER TABLE films ORDER BY rating DESC")
         film_list.sort(key=lambda x: x.rating, reverse=True)
     else:
         print("Invalid input, please try again")
+
+    mydb.commit()
 
     for film in film_list:
         f.write(str(film.popularity) + "," + film.title + "," + film.year + "," + str(film.rating) + "," + film.link + "\n")
     
     f.close()
-    
 
 if __name__ == "__main__":
     main()
