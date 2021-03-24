@@ -1,5 +1,5 @@
 <!-- ABOUT THE PROJECT -->
-## Web Scraper
+# Web Scraper
 
 ![Project Screenshot][project-screenshot]
 
@@ -14,7 +14,7 @@ The web scraper is a tool that extracts relevant data from the most popular film
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To get a local copy up and running, follow these simple steps.
+To get a local copy up and running, follow these instructions.
 
 ### Prerequisites
 
@@ -55,5 +55,4 @@ To get a local copy up and running, follow these simple steps.
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [project-screenshot]: images/WebScraper.png
