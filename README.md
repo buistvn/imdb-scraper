@@ -1,18 +1,59 @@
-# Web Scraper
-This tool takes the most popular films of the week from [IMDb](https://www.imdb.com/chart/moviemeter/?ref_=nv_mv_mpm) and extracts relevant data. The list of films is stored in a database which can be accessed with MySQL. The list can be sorted by popularity ranking, title, release date, and average rating. The sorted information is also written to a separate .csv output file for a more accessible and convenient viewing.<br />
+<!-- ABOUT THE PROJECT -->
+## Web Scraper
 
-In the project directory, you can run:
+![Project Screenshot][project-screenshot]
 
-### `python main.py`
+The web scraper is a tool that extracts relevant data from the most popular films of the week on IMDb. The data is stored in a MySQL database and written to a .csv output file. It can also be sorted by popularity ranking, title, release date, and average rating.
 
-Runs the program, asks for user input, and writes the data to film_data.csv.
+### Built With
 
-In the MySQL Workbench query, you can run:
+* [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
 
-### `USE filmdb`
 
-Uses the filmdb database.
 
-### `SELECT * FROM films`
+<!-- GETTING STARTED -->
+## Getting Started
 
-Selects all entries from the films table.
+To get a local copy up and running, follow these simple steps.
+
+### Prerequisites
+
+* pip
+  ```sh
+  py -m pip --version
+  ```
+
+### Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/buistvn/web-scraper.git
+   ```
+2. Install Beautiful Soup
+   ```sh
+   pip install beautifulsoup4
+   ```
+
+
+
+<!-- USAGE -->
+## Usage
+
+* Run the program
+  ```sh
+  python main.py
+  ```
+* Set filmdb as the current database in MySQL Workbench
+  ```sh
+  USE filmdb
+  ```
+* Select all entries from the films table in MySQL Workbench
+  ```sh
+  SELECT * FROM films
+  ```
+
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[project-screenshot]: images/WebScraper.png
