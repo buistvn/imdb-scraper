@@ -56,4 +56,4 @@ To get a local copy up and running, follow these simple steps.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[project-screenshot]: images/Web Scraper.png
+[project-screenshot]: images/WebScraper.png
