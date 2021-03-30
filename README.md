@@ -1,11 +1,14 @@
-<!-- ABOUT THE PROJECT -->
+<!-- PROJECT -->
 # Web Scraper
 
 ![Project Screenshot][project-screenshot]
 
 The web scraper is a tool that extracts relevant data from the most popular films of the week on IMDb. The data is stored in a MySQL database and written to a .csv output file. It can also be sorted by popularity ranking, title, release date, and average rating.
 
-### Built With
+
+
+<!-- BUILT WITH -->
+## Built With
 
 * [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
 
@@ -54,5 +57,5 @@ To get a local copy up and running, follow these instructions.
 
 
 
-<!-- MARKDOWN LINKS & IMAGES -->
+<!-- LINKS & IMAGES -->
 [project-screenshot]: images/WebScraper.png
