@@ -3,7 +3,7 @@
 
 ![Project Screenshot][project-screenshot]
 
-IMDb Scraper is a script that extracts movie data from [IMDb's Most Popular Movies page](https://www.imdb.com/chart/moviemeter/). The results are stored in a CSV output file and a MySQL database table. The data can be sorted by popularity ranking, title, release date, and average rating.
+IMDb Scraper is a script that extracts movie data from [IMDb's Most Popular Movies page](https://www.imdb.com/chart/moviemeter/). The results are stored in a CSV output file and a MySQL database table. The data can be sorted by popularity, title, release date, and average rating.
 
 
 
